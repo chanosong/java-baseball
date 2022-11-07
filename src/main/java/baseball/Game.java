@@ -5,13 +5,14 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
+import static camp.nextstep.edu.missionutils.Console.readLine;
+
 public class Game {
     // TODO: <Local Value> Game Class
     private List<Integer> answer;
     private BallCount ballcount;
 
     public Game() {
-        // TODO: <Func> Initializer
         ballcount = new BallCount();
         setAnswer();
     }
@@ -68,10 +69,22 @@ public class Game {
 
     // <Func> : Check game is over and boolean value
     public boolean isOver() {
-        // TODO: <Func> Check game is over
         if (ballcount.getStrike() == 3) {
             return true;
         }
         return false;
+    }
+
+    // <Func> : Run game
+    public void run() {
+
+        while (isOver() == false) {
+            String inputNum = readLine();
+            List<Integer> temp = new ArrayList<>();
+            for (int i = 0; i < 3; i++) {
+                temp.add(Character.getNumericValue(inputNum.charAt(i)));
+            }
+            checkAnswer(temp);
+        }
     }
 }
