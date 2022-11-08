@@ -79,20 +79,9 @@ public class Game {
     // <Func> : Check input String length
     public Boolean checkInputFormat(String input) {
 
-        /*
-        for check Test
+        // for check Test
         if (input.length() >= 4) {
             throw new IllegalArgumentException();
-        }
-        */
-
-
-        try {
-            if (input.length() >= 4) {
-                throw new IllegalArgumentException();
-            }
-        } catch (Exception e) {
-            System.out.println("error");
         }
 
         return true;
@@ -103,6 +92,9 @@ public class Game {
 
         while (isOver() == false) {
             String inputNum = readLine();
+
+            checkInputFormat(inputNum);
+
             List<Integer> temp = new ArrayList<>();
             for (int i = 0; i < 3; i++) {
                 temp.add(Character.getNumericValue(inputNum.charAt(i)));
