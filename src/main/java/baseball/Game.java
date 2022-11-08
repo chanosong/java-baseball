@@ -39,8 +39,9 @@ public class Game {
         this.answer = answer;
     }
 
+    // <Func> : Check user's answer and real answer
     public BallCount checkAnswer(List<Integer> guess) {
-        // TODO: <Func> Check input value and compare with answer
+
         ballcount.initCount();
         for (int i = 0; i < 3; i++) {
             // same index same number
@@ -63,7 +64,7 @@ public class Game {
             System.out.println("낫싱");
         } else {
             if (ballcount.getBall() != 0) {
-                System.out.print(ballcount.getBall() + "볼");
+                System.out.print(ballcount.getBall() + "볼 ");
             }
             if (ballcount.getStrike() != 0) {
                 System.out.print(ballcount.getStrike() + "스트라이크 ");
