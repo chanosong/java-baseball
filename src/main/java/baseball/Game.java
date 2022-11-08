@@ -8,13 +8,18 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class Game {
-    // TODO: <Local Value> Game Class
     private List<Integer> answer;
     private BallCount ballcount;
 
+    // Initializer
     public Game() {
         ballcount = new BallCount();
+    }
+
+    // <Func> : Initialize new game
+    public void initGame() {
         setAnswer();
+        ballcount.initCount();
     }
 
     // <Func> : Set random answer using pickNumberInRange()
@@ -100,12 +105,12 @@ public class Game {
 
     public boolean askRestart() {
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-        String decide = readLine();
-        System.out.println(decide);
+        String decide;
         while (true) {
-            if (decide == "1") {
+            decide = readLine();
+            if (decide.equals("1")) {
                 return true;
-            } else if (decide == "2") {
+            } else if (decide.equals("2")) {
                 return false;
             } else {
                 System.out.println("1과 2중 하나만을 입력해주세요.");
@@ -120,6 +125,7 @@ public class Game {
         System.out.println("숫자 야구 게임을 시작합니다.");
 
         while (keepGoing == true) {
+            initGame();
             while (isOver() == false) {
                 System.out.print("숫자를 입력해주세요 : ");
                 String inputNum = readLine();
