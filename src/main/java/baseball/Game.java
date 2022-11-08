@@ -99,15 +99,16 @@ public class Game {
     }
 
     public boolean askRestart() {
-        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n");
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
         String decide = readLine();
+        System.out.println(decide);
         while (true) {
             if (decide == "1") {
                 return true;
             } else if (decide == "2") {
                 return false;
             } else {
-                System.out.println("1과 2중 하나만을 입력해주세요.\n");
+                System.out.println("1과 2중 하나만을 입력해주세요.");
             }
         }
     }
@@ -116,11 +117,11 @@ public class Game {
     public void run() {
         boolean keepGoing = true;
 
-        System.out.println("숫자 야구 게임을 시작합니다.\n");
+        System.out.println("숫자 야구 게임을 시작합니다.");
 
         while (keepGoing == true) {
             while (isOver() == false) {
-                System.out.println("숫자를 입력해주세요 : ");
+                System.out.print("숫자를 입력해주세요 : ");
                 String inputNum = readLine();
 
                 checkInputFormat(inputNum);
@@ -128,7 +129,7 @@ public class Game {
                 List<Integer> inputNumList = convertString(inputNum);
                 checkAnswer(inputNumList);
             }
-            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료\n");
+            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
             keepGoing = askRestart();
         }
     }
