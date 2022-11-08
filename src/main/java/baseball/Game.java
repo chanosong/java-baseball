@@ -69,10 +69,33 @@ public class Game {
 
     // <Func> : Check game is over and boolean value
     public boolean isOver() {
+
         if (ballcount.getStrike() == 3) {
             return true;
         }
         return false;
+    }
+
+    // <Func> : Check input String length
+    public Boolean checkInputFormat(String input) {
+
+        /*
+        for check Test
+        if (input.length() >= 4) {
+            throw new IllegalArgumentException();
+        }
+        */
+
+
+        try {
+            if (input.length() >= 4) {
+                throw new IllegalArgumentException();
+            }
+        } catch (Exception e) {
+            System.out.println("error");
+        }
+
+        return true;
     }
 
     // <Func> : Run game

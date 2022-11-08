@@ -34,4 +34,12 @@ public class FunctionTest {
         game.checkAnswer(guess2);
         assertThat(game.isOver()).isEqualTo(false);
     }
+
+    @Test
+    void testArgumentException() {
+        String overedString = "1234";
+
+        assertThatThrownBy(() -> game.checkInputFormat(overedString))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
