@@ -8,13 +8,18 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class Game {
-    // TODO: <Local Value> Game Class
     private List<Integer> answer;
     private BallCount ballcount;
 
+    // Initializer
     public Game() {
         ballcount = new BallCount();
+    }
+
+    // <Func> : Initialize new game
+    public void initGame() {
         setAnswer();
+        ballcount.initCount();
     }
 
     // <Func> : Set random answer using pickNumberInRange()
@@ -87,19 +92,51 @@ public class Game {
         return true;
     }
 
+    // <Func> : Convert String to List<Integer>
+    public List<Integer> convertString(String input) {
+        List<Integer> inputToListInt = new ArrayList<>();
+
+        for (int i = 0; i < 3; i++) {
+            inputToListInt.add(Character.getNumericValue(input.charAt(i)));
+        }
+
+        return inputToListInt;
+    }
+
+    public boolean askRestart() {
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        String decide;
+        while (true) {
+            decide = readLine();
+            if (decide.equals("1")) {
+                return true;
+            } else if (decide.equals("2")) {
+                return false;
+            } else {
+                System.out.println("1과 2중 하나만을 입력해주세요.");
+            }
+        }
+    }
+
     // <Func> : Run game
     public void run() {
+        boolean keepGoing = true;
 
-        while (isOver() == false) {
-            String inputNum = readLine();
+        System.out.println("숫자 야구 게임을 시작합니다.");
 
-            checkInputFormat(inputNum);
+        while (keepGoing == true) {
+            initGame();
+            while (isOver() == false) {
+                System.out.print("숫자를 입력해주세요 : ");
+                String inputNum = readLine();
 
-            List<Integer> temp = new ArrayList<>();
-            for (int i = 0; i < 3; i++) {
-                temp.add(Character.getNumericValue(inputNum.charAt(i)));
+                checkInputFormat(inputNum);
+
+                List<Integer> inputNumList = convertString(inputNum);
+                checkAnswer(inputNumList);
             }
-            checkAnswer(temp);
+            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+            keepGoing = askRestart();
         }
     }
 }
